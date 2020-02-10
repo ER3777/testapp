@@ -1,0 +1,31 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+ <form [formGroup]="eForm" (ngSubmit)="details(eForm.value)">
+  <div formArrayName="items"
+  *ngFor="let item of eForm.get('items').controls; let i = index;">
+  <div [formGroupName]="i">
+    <div class="form-group" [ngClass]="{'has-error': item.get('eId').invalid && item.get('eId').touched}">
+      <label for="Employee Id">Emp Id:</label>
+    <input formControlName="eId" placeholder="Enter Id"><br>
+    <span class="help-block" *ngIf="item.get('eId').errors?.required && item.get('eId').touched">Emp Id is Required</span>
+  </div>
+    <br>
+    <div class="form-group" [ngClass]="{'has-error': item.get('eName').invalid && item.get('eName').touched}">
+      <label for="Employee Name">Emp Name:</label>
+    <input formControlName="eName" placeholder="Enter Name"><br>
+    <span class="help-block" *ngIf="item.get('eName').errors?.required && item.get('eName').touched">Emp Name is Required</span>
+    </div>
+    <br>
+    
+  </div>
+  
+</div>
+<button (click)="addEmp()">Add Employee</button>
+<input type="submit">
+
+
+ </form>
+
